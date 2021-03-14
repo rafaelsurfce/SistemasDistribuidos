@@ -43,8 +43,8 @@ public class User {
 			}
 			
 			else if (option.equals("exit")) {
-				calculadoraCiclista.close();
 				System.out.println("-------------------SERVIÇO ENCERRADO-------------------");
+				calculadoraCiclista.close();
 				break;
 			}
 			

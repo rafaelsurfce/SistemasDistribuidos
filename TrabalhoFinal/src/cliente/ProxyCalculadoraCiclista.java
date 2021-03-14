@@ -25,7 +25,6 @@ public class ProxyCalculadoraCiclista {
 		cliente.sendRequest(dados, porta, ip);
 		return cliente.sendResponse();
 	}
-	
 	public void close() {
 		cliente.close();
 	}
