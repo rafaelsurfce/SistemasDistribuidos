@@ -13,7 +13,5 @@ public class Conection {
             servidor.sendRequest();
             servidor.sendResponse();
         }
-
     }
-
 }
