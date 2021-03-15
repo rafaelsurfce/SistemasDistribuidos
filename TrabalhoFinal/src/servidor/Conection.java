@@ -2,19 +2,18 @@ package servidor;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 public class Conection {
 
-	public static void main(String[] args) throws IOException {
-		DatagramSocket socket=null;
-		UDPServe servidor = new UDPServe(socket);
-		
-		while (true) {
-			servidor.sendRequest();
-			servidor.sendResponse();
-		}
+    public static void main(String[] args) throws IOException {
+        DatagramSocket socket = null;
+        UDPServe servidor = new UDPServe(socket);
 
-	}
+        while (true) {
+            servidor.sendRequest();
+            servidor.sendResponse();
+        }
+
+    }
 
 }
