@@ -1,4 +1,4 @@
-const CalculadoraCiclista = require('./CalculadoraCiclista');
+const CalculadoraCiclista = require('./Services');
 
 class Esqueleto {
     calculadora = CalculadoraCiclista;
