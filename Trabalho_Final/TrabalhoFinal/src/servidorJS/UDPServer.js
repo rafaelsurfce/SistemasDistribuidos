@@ -9,10 +9,11 @@ class UDPServe {
         this.porta = porta;
     }
 
-    sendRequest(msg, rinfo) {
+    getRequest(msg, rinfo) {
         const message = new Message(msg.toString());
-        message.argumentos = this.despachante.invoke(message);
+        message.arguments = this.despachante.invoke(message);
         message.messageType = 1;
+        console.log(JSON.stringify(message, null, 4));
         this.sendReply(JSON.stringify(message), rinfo.address, rinfo.port);
     }
 

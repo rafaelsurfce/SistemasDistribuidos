@@ -7,13 +7,13 @@ class Despachante {
 
         switch (message.objectReference) {
             case "IMC":
-                return this.esqueleto.IMC(message.argumentos);
+                return this.esqueleto.IMC(message.arguments);
             case "Bike":
-                return this.esqueleto.Bike(message.argumentos);
+                return this.esqueleto.Bike(message.arguments);
             case "Health":
-                return this.esqueleto.Health(message.argumentos);
+                return this.esqueleto.Health(message.arguments);
             default:
-                return { erro: ":("};
+                return [ ":(" ];
         }
     }
 }

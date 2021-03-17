@@ -24,7 +24,7 @@ class IMC {
         } else if (imc >= 40) {
             resposta = "OBESIDADE MORBIDA, COMECE A PEDALAR CON FREQUENCIA SEGUIDA DA AJUDA DE UM ESPECIALISTA, VOCE CORRE RISCO DE VIDA";
         }
-        return { calcIMC: resposta };
+        return [ resposta ];
     }
 }
 
@@ -49,7 +49,7 @@ class Bike {
         } else {
             resposta = "Altura invalida";
         }
-        return { alturaBike: resposta };
+        return [ resposta ];
     }
 }
 
@@ -71,7 +71,7 @@ class Health {
         } else {
             resposta = "Batimentos normal";
         }
-        return { batimentosCardiacos: resposta };
+        return [ resposta ];
     }
 }
 

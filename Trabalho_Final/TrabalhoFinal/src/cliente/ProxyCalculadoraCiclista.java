@@ -1,6 +1,7 @@
 package cliente;
 
 import java.io.IOException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ProxyCalculadoraCiclista {
@@ -9,27 +10,27 @@ public class ProxyCalculadoraCiclista {
     private String ip = "localhost";
     private int porta = 1515;
     
-    public String doOperation(String objectReference, String methodId, String[] arguments) throws IOException {
+    public JSONArray doOperation(String objectReference, String methodId, String[] arguments) throws IOException {
         RequestMsg msg = new RequestMsg(objectReference, methodId, arguments);
         cliente.sendRequest(msg.toString(), this.porta, this.ip);
-        return cliente.sendResponse();
+        return new JSONObject(cliente.sendResponse()).getJSONArray("arguments");
     }
-    
-//    public empacotaMensagem desempacotaMensagem
 
     public String IMC(double altura, double peso) throws IOException {
         String[] args = {(altura + ""), (peso + "")};
-        return new JSONObject(this.doOperation("IMC", "calcIMC", args)).getString("calcIMC");
+        return this.doOperation("IMC", "calcIMC", args).getString(0);
     }
     
     public String alturaBike(double altura) throws IOException {
         String[] args = {(altura + "")};
-        return new JSONObject(this.doOperation("Bike", "alturaBike", args)).getString("alturaBike");
+        return this.doOperation("Bike", "alturaBike", args).getString(0);
     }
+    
     public String batimentosCardiacos(int batimentosTotal) throws IOException {
         String[] args = {(batimentosTotal + "")};
-        return new JSONObject(this.doOperation("Health", "batimentosCardiacos", args)).getString("batimentosCardiacos");
+        return this.doOperation("Health", "batimentosCardiacos", args).getString(0);
     }
+    
     public void close() {
         cliente.close();
     }

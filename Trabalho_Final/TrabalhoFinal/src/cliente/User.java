@@ -48,6 +48,7 @@ public class User {
                 case "exit":
                     System.out.println("-------------------SERVIÇO ENCERRADO-------------------");
                     calculadoraCiclista.close();
+                    teclado.close();
                     break OUTER;
                 default:
                     System.out.println("SERVIÇO DESCONHECIDO TENTE UM VALIDO");

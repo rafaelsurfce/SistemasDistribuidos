@@ -1,17 +1,19 @@
 class Message {
     messageType; // int
     requestId; // int
+    objectReference; // String
     methodId; // String
     methodId; // Srting
-    argumentos; // Array ou Object
+    arguments; // Array ou Object
 
     constructor(msg) {
         const json = JSON.parse(msg);
         this.messageType = json.messageType;
         this.requestId = json.requestId;
+        this.objectReference = json.objectReference;
         this.methodId = json.methodId;
         this.methodId = json.methodId;
-        this.argumentos = json.arguments;
+        this.arguments = json.arguments;
     }
 }
 

@@ -8,15 +8,7 @@ import org.json.JSONObject;
 
 public class UDPCliente {
 
-    private DatagramSocket socket = null;
-    private String ip = "localhost";
-    private int porta = 1515;
-    
-    public String doOperation(String objectReference, String methodId, String[] arguments) throws IOException {
-        RequestMsg msg = new RequestMsg(objectReference, methodId, arguments);
-        this.sendRequest(msg.toString(), this.porta, this.ip);
-        return new JSONObject(this.sendResponse()).toString();
-    }
+    private DatagramSocket socket;
 
     public void sendRequest(String request, int porta, String ip) throws IOException {
         socket = new DatagramSocket();
