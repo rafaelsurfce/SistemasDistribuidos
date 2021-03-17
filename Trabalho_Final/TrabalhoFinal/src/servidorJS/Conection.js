@@ -7,7 +7,6 @@ class Conection {
         const porta = 1515;
         const servidor = new UDPServe(socket, porta);
 
-        
         socket.on('message', (msg, rinfo) => servidor.sendRequest(msg, rinfo));
 
         socket.bind(porta);

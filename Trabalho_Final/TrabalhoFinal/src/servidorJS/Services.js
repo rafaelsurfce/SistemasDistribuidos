@@ -1,4 +1,7 @@
 class IMC {
+    altura; // double
+    peso; // double
+
     constructor(altura, peso) {
         this.altura = parseFloat(altura);
         this.peso = parseFloat(peso);
@@ -26,6 +29,8 @@ class IMC {
 }
 
 class Bike {
+    altura; // double
+
     constructor(altura) {
         this.altura = parseFloat(altura);
     }
@@ -49,6 +54,8 @@ class Bike {
 }
 
 class Health {
+    batimentosTotal; // int
+
     constructor(batimentosTotal) {
         this.batimentosTotal = parseInt(batimentosTotal);
     }

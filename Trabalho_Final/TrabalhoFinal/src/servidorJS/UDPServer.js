@@ -1,4 +1,5 @@
 const Despachante = require('./Despachante');
+const Message = require('./Message');
 
 class UDPServe {
     despachante = new Despachante();
@@ -9,12 +10,14 @@ class UDPServe {
     }
 
     sendRequest(msg, rinfo) {
-        const resposta = this.despachante.invoke(msg.toString());
-        this.sendReply(resposta, rinfo.address, rinfo.port);
+        const message = new Message(msg.toString());
+        message.argumentos = this.despachante.invoke(message);
+        message.messageType = 1;
+        this.sendReply(JSON.stringify(message), rinfo.address, rinfo.port);
     }
-    
+
     sendReply(reply, clientHost, clientPort) {
-        this.socket.send(JSON.stringify(reply), clientPort, clientHost, (error) => error && console.error(error));
+        this.socket.send(reply, clientPort, clientHost, (error) => error && console.error(error));
     }
 }
 

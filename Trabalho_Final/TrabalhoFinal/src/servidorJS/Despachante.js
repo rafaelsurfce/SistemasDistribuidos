@@ -3,18 +3,17 @@ const Esqueleto = require('./Esqueleto');
 class Despachante {
     esqueleto = new Esqueleto();
 
-    invoke(dados) {
-        const json = JSON.parse(dados);
+    invoke(message) {
 
-        switch (json["objectReference"]) {
+        switch (message.objectReference) {
             case "IMC":
-                return this.esqueleto.IMC(json);
+                return this.esqueleto.IMC(message.argumentos);
             case "Bike":
-                return this.esqueleto.Bike(json);
+                return this.esqueleto.Bike(message.argumentos);
             case "Health":
-                return this.esqueleto.Health(json);
+                return this.esqueleto.Health(message.argumentos);
             default:
-                return {};
+                return { erro: ":("};
         }
     }
 }
