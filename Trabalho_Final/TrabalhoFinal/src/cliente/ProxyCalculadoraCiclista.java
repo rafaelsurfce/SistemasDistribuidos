@@ -10,19 +10,17 @@ public class ProxyCalculadoraCiclista {
     int porta = 1515;
 
     public String IMC(double altura, double peso) throws IOException {
-        String dados = "{\"calculo\": \"IMC\", \"altura\":" + altura + ", \"peso\":" + peso + "}";
-        cliente.sendRequest(dados, porta, ip);
-        return new JSONObject(cliente.sendResponse()).getString("IMC"); // { "IMC": "resultado" }
+        String[] args = {(altura + ""), (peso + "")};
+        return new JSONObject(cliente.doOperation("IMC", "calcIMC", args)).getString("calcIMC");
     }
+    
     public String alturaBike(double altura) throws IOException {
-        String dados = "{\"calculo\": \"alturaBike\", \"altura\":" + altura + "}";
-        cliente.sendRequest(dados, porta, ip);
-        return new JSONObject(cliente.sendResponse()).getString("alturaBike"); // { "alturaBike": "resultado" }
+        String[] args = {(altura + "")};
+        return new JSONObject(cliente.doOperation("Bike", "alturaBike", args)).getString("alturaBike");
     }
     public String batimentosCardiacos(int batimentosTotal) throws IOException {
-        String dados = "{\"calculo\": \"batimentosCardiacos\", \"batimentosTotal\":" + batimentosTotal + "}";
-        cliente.sendRequest(dados, porta, ip);
-        return new JSONObject(cliente.sendResponse()).getString("batimentosCardiacos"); // { "batimentosCardiacos": "resultado" }
+        String[] args = {(batimentosTotal + "")};
+        return new JSONObject(cliente.doOperation("Health", "batimentosCardiacos", args)).getString("batimentosCardiacos");
     }
     public void close() {
         cliente.close();
