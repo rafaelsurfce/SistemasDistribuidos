@@ -6,8 +6,6 @@ import org.json.JSONObject;
 public class ProxyCalculadoraCiclista {
 
     UDPCliente cliente = new UDPCliente();
-    String ip = "localhost";
-    int porta = 1515;
 
     public String IMC(double altura, double peso) throws IOException {
         String[] args = {(altura + ""), (peso + "")};
