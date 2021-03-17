@@ -1,6 +1,11 @@
-class CalculadoraCiclista {
-    IMC(altura, peso) {
-        const imc = peso / (altura * altura);
+class IMC {
+    constructor(altura, peso) {
+        this.altura = parseFloat(altura);
+        this.peso = parseFloat(peso);
+    }
+
+    calcIMC() {
+        const imc = this.peso / (this.altura * this.altura);
         let resposta = null;
 
         if (imc <= 18.5) {
@@ -16,28 +21,40 @@ class CalculadoraCiclista {
         } else if (imc >= 40) {
             resposta = "OBESIDADE MORBIDA, COMECE A PEDALAR CON FREQUENCIA SEGUIDA DA AJUDA DE UM ESPECIALISTA, VOCE CORRE RISCO DE VIDA";
         }
-        return { IMC: resposta };
+        return { calcIMC: resposta };
+    }
+}
+
+class Bike {
+    constructor(altura) {
+        this.altura = parseFloat(altura);
     }
 
-    alturaBike(altura) {
+    alturaBike() {
         let resposta;
         
-        if (altura >= 1.65 && altura <= 1.71) {
+        if (this.altura >= 1.65 && this.altura <= 1.71) {
             resposta = "Quadro ideal para sua altura é a S -15 ou 16-";
-        } else if (altura >= 1.72 && altura <= 1.76) {
+        } else if (this.altura >= 1.72 && this.altura <= 1.76) {
             resposta = "Quadro ideal para sua altura é a M -17 ou 18-";
-        } else if (altura >= 1.77 && altura <= 1.82) {
+        } else if (this.altura >= 1.77 && this.altura <= 1.82) {
             resposta = "Quadro ideal para sua altura é a L -19-";
-        } else if (altura >= 1.83 && altura <= 1.90) {
+        } else if (this.altura >= 1.83 && this.altura <= 1.90) {
             resposta = "Quadro ideal para sua altura é a XL -21-";
         } else {
             resposta = "Altura invalida";
         }
         return { alturaBike: resposta };
     }
+}
 
-    batimentosCardiacos(batimentosTotal) {
-        const resultado = (batimentosTotal * 6);
+class Health {
+    constructor(batimentosTotal) {
+        this.batimentosTotal = parseInt(batimentosTotal);
+    }
+
+    batimentosCardiacos() {
+        const resultado = (this.batimentosTotal * 6);
         let resposta;
         
         if (resultado < 60) {
@@ -51,4 +68,8 @@ class CalculadoraCiclista {
     }
 }
 
-module.exports = CalculadoraCiclista;
+module.exports = {
+    IMC,
+    Bike,
+    Health
+};

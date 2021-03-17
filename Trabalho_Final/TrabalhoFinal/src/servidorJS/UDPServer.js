@@ -2,7 +2,6 @@ const Despachante = require('./Despachante');
 
 class UDPServe {
     despachante = new Despachante();
-    resposta;
 
     constructor(socket, porta) {
         this.socket = socket;
@@ -10,12 +9,12 @@ class UDPServe {
     }
 
     sendRequest(msg, rinfo) {
-        this.resposta = this.despachante.invoke(msg.toString());
-        this.sendResponse(rinfo);
+        const resposta = this.despachante.invoke(msg.toString());
+        this.sendReply(resposta, rinfo.address, rinfo.port);
     }
-
-    sendResponse(rinfo) {
-        this.socket.send(JSON.stringify(this.resposta), rinfo.port, rinfo.address, (error) => error && console.error(error));
+    
+    sendReply(reply, clientHost, clientPort) {
+        this.socket.send(JSON.stringify(reply), clientPort, clientHost, (error) => error && console.error(error));
     }
 }
 

@@ -6,13 +6,13 @@ class Despachante {
     invoke(dados) {
         const json = JSON.parse(dados);
 
-        switch (json["calculo"]) {
+        switch (json["objectReference"]) {
             case "IMC":
                 return this.esqueleto.IMC(json);
-            case "alturaBike":
-                return this.esqueleto.alturaBike(json);
-            case "batimentosCardiacos":
-                return this.esqueleto.batimentosCardiacos(json);
+            case "Bike":
+                return this.esqueleto.Bike(json);
+            case "Health":
+                return this.esqueleto.Health(json);
             default:
                 return {};
         }

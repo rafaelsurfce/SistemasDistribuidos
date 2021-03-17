@@ -1,20 +1,19 @@
 const CalculadoraCiclista = require('./CalculadoraCiclista');
 
 class Esqueleto {
-    calculadora = new CalculadoraCiclista();
+    calculadora = CalculadoraCiclista;
 
     IMC(json) {
-        const altura = json["altura"];
-        const peso = json["peso"];
-        return this.calculadora.IMC(altura, peso);
+        const imc = new this.calculadora.IMC(...json.arguments);
+        return imc.calcIMC();
     }
-    alturaBike(json) {
-        const altura = json["altura"];
-        return this.calculadora.alturaBike(altura);
+    Bike(json) {
+        const bike = new this.calculadora.Bike(...json.arguments);
+        return bike.alturaBike();
     }
-    batimentosCardiacos(json) {
-        const batimentosTotal = json["batimentosTotal"];
-        return this.calculadora.batimentosCardiacos(batimentosTotal);
+    Health(json) {
+        const health = new this.calculadora.Health(...json.arguments);
+        return health.batimentosCardiacos();
     }
 }
 

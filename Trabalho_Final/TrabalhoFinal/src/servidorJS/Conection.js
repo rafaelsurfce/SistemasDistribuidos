@@ -8,7 +8,7 @@ class Conection {
         const servidor = new UDPServe(socket, porta);
 
         
-        socket.once('message', (msg, rinfo) => servidor.sendRequest(msg, rinfo));
+        socket.on('message', (msg, rinfo) => servidor.sendRequest(msg, rinfo));
 
         socket.bind(porta);
     }
