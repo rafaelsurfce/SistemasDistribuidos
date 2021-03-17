@@ -24,7 +24,6 @@ public class UDPServe {
         socket.receive(request);
         this.dados1 = new String(request.getData());
         this.resposta = despachante.invoke(this.dados1);
-
     }
 
     public void sendResponse() throws IOException {
