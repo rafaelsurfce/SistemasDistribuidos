@@ -10,15 +10,16 @@ import org.json.JSONObject;
 
 public class RequestMsg {
     private int messageType = 0;
-    private int requestId = 0;
+    private int requestId;
     private String methodId;
     private String objectReference;
     private String[] arguments;
     
-    public RequestMsg(String objectReference, String methodId, String[] arguments) {
+    public RequestMsg(String objectReference, String methodId, String[] arguments, int requestId) {
         this.methodId = methodId;
         this.objectReference = objectReference;
         this.arguments = arguments;
+        this.requestId = requestId;
     }
 
     public int getRequestId() {

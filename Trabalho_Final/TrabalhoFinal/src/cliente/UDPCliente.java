@@ -21,7 +21,8 @@ public class UDPCliente {
     public String sendResponse() throws IOException {
         byte[] buffer = new byte[1000];
         DatagramPacket resposta = new DatagramPacket(buffer, buffer.length);
-        socket.receive(resposta);
+        socket.setSoTimeout(5000);
+        socket.receive(resposta);        
         System.out.println("mensagem recebida");
         String result = new String(resposta.getData());
         return result;
