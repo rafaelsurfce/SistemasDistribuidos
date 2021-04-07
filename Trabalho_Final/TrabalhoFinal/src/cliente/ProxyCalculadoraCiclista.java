@@ -13,22 +13,28 @@ public class ProxyCalculadoraCiclista {
     UDPCliente cliente = new UDPCliente();
     private String ip = "localhost";
     private int porta = 1515;
-    private int requestId = 0;
+    private int requestId = 1;
+    private int tentativas = 1;
     
     public JSONArray doOperation(String objectReference, String methodId, String[] arguments) /* throws IOException */ {
+        JSONArray response = new JSONObject("{arguments:[\"error\"]}").getJSONArray("arguments");
         try {
-            this.requestId++;
             RequestMsg msg = new RequestMsg(objectReference, methodId, arguments, this.requestId);
             cliente.sendRequest(msg.toString(), this.porta, this.ip);
-            return new JSONObject(cliente.sendResponse()).getJSONArray("arguments");
+            response = new JSONObject(cliente.sendResponse()).getJSONArray("arguments");
         } catch (SocketTimeoutException time) {
-            if (this.requestId <= 5) 
-                return this.doOperation(objectReference, methodId, arguments);
-            return new JSONObject("{arguments:[\"erro timeout\"]}").getJSONArray("arguments");
+            if (this.tentativas <= 5) {
+                this.tentativas++;
+                response = this.doOperation(objectReference, methodId, arguments);
+            } else {
+                response = new JSONObject("{arguments:[\"erro timeout\"]}").getJSONArray("arguments");
+            }
         } catch (IOException ex) {
             Logger.getLogger(ProxyCalculadoraCiclista.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new JSONObject("{arguments:[\"error\"]}").getJSONArray("arguments");
+        this.tentativas = 0;
+        this.requestId++;
+        return response;
     }
 
     public String IMC(double altura, double peso) throws IOException {

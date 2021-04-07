@@ -31,7 +31,6 @@ public class RequestMsg {
     }
     
     public String toString() {
-        this.requestId++;
         JSONArray array = new JSONArray();
         JSONObject json = new JSONObject();
         json.put("messageType", this.messageType);
